@@ -190,8 +190,7 @@ function processDuplicateFree(list, callback) {
  * @returns an array with all the runners' full names in the following format: "Smith, John".
  * The full names appear in the array in the same order the runners appear in the `runners` array.
  */
-function getFullNames( /* CODE HERE */ runners) {
-    /* CODE HERE */
+function getFullNames(runners) {
     const fullNames = [];
     runners.forEach(item => fullNames.push(`${item.last_name}, ${item.first_name}`));
     return fullNames;
@@ -209,8 +208,7 @@ function getFullNames( /* CODE HERE */ runners) {
  * @returns an array with all the runners' first names in ALL CAPS.
  * The first names appear in the array in the same order the runners appear in the `runners` array.
  */
-function firstNamesAllCaps( /* CODE HERE */ runners) {
-    /* CODE HERE */
+function firstNamesAllCaps(runners) {
     const capsFirst = [];
     runners.map(item => capsFirst.push(item.first_name.toUpperCase()));
     return capsFirst;
@@ -229,8 +227,7 @@ function firstNamesAllCaps( /* CODE HERE */ runners) {
  * @returns an array containing only the runners that use the given `tShirtSize`.
  * The runners in the array appear in the same order they appear in the `runners` array.
  */
-function getRunnersByTShirtSize( /* CODE HERE */ runners, tShirtSize) {
-    /* CODE HERE */
+function getRunnersByTShirtSize(runners, tShirtSize) {
     const shirtMatch = runners.filter(item => item.shirt_size === tShirtSize);
     return shirtMatch;
 }
@@ -245,8 +242,7 @@ function getRunnersByTShirtSize( /* CODE HERE */ runners, tShirtSize) {
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns a number which is the sum of the donations by all runners.
  */
-function tallyUpDonations( /* CODE HERE */ runners) {
-    /* CODE HERE */
+function tallyUpDonations(runners) {
     return runners.reduce(((acc, curVal) => acc + curVal.donation), 0);
 }
 
@@ -297,8 +293,7 @@ function counterMaker() {
  * counter() // should return 0
  * etc
  */
-function counterMakerWithLimit( /* CODE HERE */ maxCount) {
-    /* CODE HERE */
+function counterMakerWithLimit(maxCount) {
     let count = 0;
 
     function counter() {
