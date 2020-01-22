@@ -110,7 +110,7 @@ function processSum(numberList, callback) {
  * should return 1000.
  */
 function processProduct(num1, num2, callback) {
-    return callback((num1 * num2));
+    return callback(num1 * num2);
 }
 
 /**
@@ -134,8 +134,8 @@ function processProduct(num1, num2, callback) {
  * should return "sad".
  */
 function processContains(item, list, callback) {
-    const foundItems = list.filter(element => element === item);
-    return callback(foundItems.length !== 0);
+    const foundItems = list.includes(element => element === item);
+    return callback(foundItems);
 }
 
 /**
@@ -158,18 +158,8 @@ function processContains(item, list, callback) {
  * should return 3.
  */
 function processDuplicateFree(list, callback) {
-    let hold = [];
-    const newArr = [];
-    const reduceSort = () => {
-        for (let i = 0; i < list.length; i++) {
-            if (list[i] !== hold[0]) {
-                hold[0] = list[i];
-                newArr.push(hold[0]);
-            }
-        }
-        return newArr;
-    }
-    return callback(reduceSort());
+    const deduped = list.filter((item, index) => list.indexOf(item) === index);
+    return callback(deduped);
 }
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
@@ -209,8 +199,7 @@ function getFullNames(runners) {
  * The first names appear in the array in the same order the runners appear in the `runners` array.
  */
 function firstNamesAllCaps(runners) {
-    const capsFirst = [];
-    runners.map(item => capsFirst.push(item.first_name.toUpperCase()));
+    const capsFirst = runners.map(item => item.first_name.toUpperCase());
     return capsFirst;
 }
 
@@ -243,7 +232,8 @@ function getRunnersByTShirtSize(runners, tShirtSize) {
  * @returns a number which is the sum of the donations by all runners.
  */
 function tallyUpDonations(runners) {
-    return runners.reduce(((acc, curVal) => acc + curVal.donation), 0);
+    const byDonation = (acc, curVal) => acc + curVal.donation;
+    return runners.reduce(byDonation, 0);
 }
 
 /////////////// CLOSURES ///////////////
@@ -263,14 +253,14 @@ function tallyUpDonations(runners) {
  * etc
  */
 function counterMaker() {
-    // BROKEN CODE STARTS
+
     let count = 0;
 
     function counter() {
         return count++;
     }
     return counter;
-    // BROKEN CODE ENDS
+
 }
 
 /**
@@ -297,12 +287,8 @@ function counterMakerWithLimit(maxCount) {
     let count = 0;
 
     function counter() {
-        if (count <= maxCount) {
-            return count++;
-        } else if (count > maxCount) {
-            count = 0;
-            return count++;
-        }
+        if (count > maxCount) count = 0;
+        return count++;
     }
     return counter;
 
