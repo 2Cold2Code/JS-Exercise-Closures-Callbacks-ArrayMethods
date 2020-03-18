@@ -134,8 +134,12 @@ function processProduct(num1, num2, callback) {
  * should return "sad".
  */
 function processContains(item, list, callback) {
-    const foundItems = list.includes(element => element === item);
-    return callback(foundItems);
+    // console.log(list) = 1, {}, 3;
+    // console.log(item) = {};
+    // console.log(callback) = (b => b);
+    const test = list.includes(callback(item)) ? true : false;
+    
+    return test;
 }
 
 /**
